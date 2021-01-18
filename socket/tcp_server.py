@@ -27,10 +27,10 @@ while 1:
             
             if msg.decode('utf-8') == 'END':
                 res = 'OK'
-                #conn.send((b"HTTP/1.1 200 OK\r\n\r\n%s"%data))
                 conn.send(res.encode('utf-8'))# 收发消息一定要二进制，记得编码
                 conn.close()#断开连接
                 print('断开连接...')
+                break
          
         except Exception as e:
             print(e)
@@ -40,5 +40,7 @@ while 1:
     '''
     with open("login.html","rb") as f:
         data=f.read()
+    conn.send((b"HTTP/1.1 200 OK\r\n\r\n%s"%data))
+    conn.close()
     '''
 tcp_ser.close()# 关闭服务器    
